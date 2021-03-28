@@ -1,15 +1,13 @@
 import Pyro4
 
 
-@Pyro4.expose
+@Pyro4.expose # expoem a classe de forma global
 class Server(object):
 
     userList = []
 
     def createUser(self, user):
-        
         self.userList.append(user)
-    
         return "User created"
 
     def listOfUser(self):
@@ -20,10 +18,10 @@ class Server(object):
 
 
 
-daemon = Pyro4.Daemon()
-ns = Pyro4.locateNS()
-uri = daemon.register(Server)
-ns.register("server", uri)
+daemon = Pyro4.Daemon() # inicia o processo
+ns = Pyro4.locateNS() # Inicia o processo local
+uri = daemon.register(Server) # Registra o processo
+ns.register("server", uri) # Cria um alias para o processo registrado
 
-print("Ready. Object uri =", uri)
-daemon.requestLoop()
+# print("Ready. Object uri =", uri)
+daemon.requestLoop() # Deixa o processo aberto para chamadas

@@ -2,14 +2,10 @@
 import Pyro4
 
 
-# ns = Pyro4.locateNS()
-# uri = ns.lookup('obj')
-
-uri = "PYRO:obj_cdb7d330a64c43549f8d5747875d5f51@localhost:36943"
-
-server = Pyro4.Proxy("PYRONAME:server")
+server = Pyro4.Proxy("PYRONAME:server") # Conecta com o servidor
 
 
+# usuario teste
 user = {"name": "wagner",
         "email": "wagnerfelidre@gmail.com"
         }
