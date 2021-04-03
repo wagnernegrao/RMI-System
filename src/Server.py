@@ -8,7 +8,7 @@ class Server(object):
 
     def createUser(self, user):
         self.userList.append(user)
-        return "User created"
+        return "Usuario criado"
 
     def listOfUser(self):
         return self.userList
@@ -28,6 +28,15 @@ class Server(object):
                 abilities.append({"Nome": user["nome"], "Habilidade": user["habilidades"]})
     
         return abilities
+    
+    def modifyAbilitie(self, email, newAbilitie):
+
+        for user in self.userList:
+            if (user["email"] == email):
+                user["experiencia_profissional"] = user["experiencia_profissional"] + ", " + newAbilitie
+                return "Nova experiencia profissional adicionada: " + user["experiencia_profissional"]
+            
+            return "Usuario com esse email nao foi encontrado"
 
     # 5. Listar todas as informações de todos os perfis
     def listAllUsers(self):
@@ -39,7 +48,14 @@ class Server(object):
             if (user["email"] == email):
                 return user
         return "Esse email não corresponde a nehum usuário"
+             
 
+    def findByExperience(self, email):
+        for user in self.userList:
+            if (user["email"] == email):
+                return "Habilidades: " + user["habilidades"]
+
+        return "Usuario com esse email nao foi encontrado"
 
 daemon = Pyro4.Daemon() # inicia o processo
 ns = Pyro4.locateNS() # Inicia o processo local
