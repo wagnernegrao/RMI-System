@@ -1,5 +1,5 @@
 import Pyro4
-from client_app import ClientApp
+from rmi_client import RMIClient
 
 user = {"nome": "wagner",
         "sobrenome": "negrao",
@@ -25,42 +25,60 @@ HELP_TEXT = '''
 [3] Acrescentar uma nova experiência em um perfil;
 [4] Dado o email do perfil, retornar sua experiência;
 [5] Listar todas as informações de todos os perfis;
-[6] Dado o email de um perfil, retornar suas informações.\n
+[6] Dado o email de um perfil, retornar suas informações.
 '''
 
-def main():
-    server = Pyro4.Proxy("PYRONAME:server")
+def get_command_code():
+    while True:
+        try:
+            n = int(input('Comando: '))
+            if not 1 <= n <= 6:
+                raise ValueError()
+            break
+        except ValueError:
+            print('Valor invalido!')
+            pass
+    return n
 
-    # Criando usuarios para testes
-    print(server.createUser(user))
-    print(server.createUser(user2))
-
-    client = ClientApp(server)
-
-    print(HELP_TEXT)
-    command = ClientApp.get_command_code()
-
+def execute_operation(command):
+    # Listar todas as pessoas formadas em um determinado curso 
     if command == 1:
-        print('Listar todas as pessoas formadas em um determinado curso')
-
+        curso = input("Digite uma formação acadêmica: ")
+        client.list_users_by_course(curso)
+    # Listar as habilidades dos perfis que moram em uma determinada cidade
     elif command == 2:
-        print('Listar as habilidades dos perfis que moram em uma determinada cidade')
-
+        cidade = input("Digite uma localização: ")
+        client.list_abilities_by_city(cidade)
+    # Acrescentar uma nova experiência em um perfil
     elif command == 3:
-        print('Acrescentar uma nova experiência em um perfil')
-
+        email = input("Digite um E-mail: ")
+        experiencia = input("Digite a nova experiencia: ")
+        client.add_experience(email, experiencia)
+    # Dado o email do perfil, retornar sua experiência
     elif command == 4:
-        print('Dado o email do perfil, retornar sua experiência')
-
+        email = input("Digite um E-mail: ")
+        client.experience_by_email(email)
+    # Listar todas as informações de todos os perfis
     elif command == 5:
-        # Listar todas as informações de todos os perfis
         client.list_all_userinfo()
-
+    # Dado o email de um perfil, retornar suas informações
     elif command == 6:
-        # Dado o email de um perfil, retornar suas informações
         email = input("Digite um E-mail: ")
         client.user_by_email(email)
 
-
 if __name__ == '__main__':
-    main()
+    server = Pyro4.Proxy("PYRONAME:server")
+
+    # Criando usuarios para testes
+    server.createUser(user)
+    server.createUser(user2)
+
+    client = RMIClient(server)
+    print(HELP_TEXT)
+
+    n = 0
+    while n < 5:
+        c = get_command_code() # espera a entrada do usuario
+        execute_operation(c)
+        n += 1
+    
