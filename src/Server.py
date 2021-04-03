@@ -18,7 +18,7 @@ class Server(object):
 
         for user in self.userList:
             if (user["formacao_academica"] == graduation):
-                graduates.append(user)
+                graduates.append(user["nome"])
     
         return graduates
 
