@@ -2,8 +2,6 @@ import time
 import csv
 import os
 
-
-
 class TimeExecution(object):
     
     time = [[0], [0], [0], [0], [0], [0], [0]]
