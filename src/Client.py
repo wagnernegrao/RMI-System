@@ -1,30 +1,6 @@
 import Pyro4
-import time
-import timeExecution as te
+from client_app import ClientApp
 
-server = Pyro4.Proxy("PYRONAME:server") # Conecta com o servidor
-
-
-# email = input("Email: ")
-# nome = input("Nome: ")
-# sobrenome = input("Sobrenome: ")
-# residencia = input("Residencia: ")
-# formacao_academica = input("Formacao academica: ")
-# habilidades = input("Habilidades: ")
-# experiencia_profissional = input("Experiencia profissional: ")
-
-
-# user = {"nome": nome,
-#         "sobrenome": sobrenome,
-#         "email": email,
-#         "residencia": residencia,
-#         "formacao_academica": formacao_academica,
-#         "habilidades": habilidades,
-#         "experiencia_profissional": experiencia_profissional 
-#         }
-
-
-# usuario teste
 user = {"nome": "wagner",
         "sobrenome": "negrao",
         "email": "wagner@email.com",
@@ -32,36 +8,59 @@ user = {"nome": "wagner",
         "formacao_academica": "cientista computacao",
         "habilidades": "dev",
         "experiencia_profissional": "dev"
-        }
+}
 
 user2 = {"nome": "wagner",
         "sobrenome": "negrao",
-        "email": "email@email.com",
+        "email": "wagner@email.com",
         "residencia": "rua jarbas passarinho",
         "formacao_academica": "pedreiro",
         "habilidades": "javaboy",
         "experiencia_profissional": "dev"
 }
 
-print(server.createUser(user))
-print(server.createUser(user))
-print(server.createUser(user2))
+HELP_TEXT = '''
+[1] Listar todas as pessoas formadas em um determinado curso;
+[2] Listar as habilidades dos perfis que moram em uma determinada cidade;
+[3] Acrescentar uma nova experiência em um perfil;
+[4] Dado o email do perfil, retornar sua experiência;
+[5] Listar todas as informações de todos os perfis;
+[6] Dado o email de um perfil, retornar suas informações.\n
+'''
 
-# graduacao = input("Qual graduacao: ")
-# print(server.findByGraduation(graduacao))
+def main():
+    server = Pyro4.Proxy("PYRONAME:server")
 
-# habilidade = input("Qual habilidade: ")
-# print(server.findByAbilities(habilidade))
+    # Criando usuarios para testes
+    print(server.createUser(user))
+    print(server.createUser(user2))
 
-# email = input("Qual email: ")
-# habilidade = input("Qual habilidade: ")
-# print(server.modifyAbilitie(email , habilidade))
+    client = ClientApp(server)
 
-email = input("Qual email: ")
-t1 = time.time()
-print(server.findByExperience(email))
-t2 = time.time()
+    print(HELP_TEXT)
+    command = ClientApp.get_command_code()
 
-te.TimeExecution().timeCreateUser(t1, t2)
+    if command == 1:
+        print('Listar todas as pessoas formadas em um determinado curso')
 
-te.TimeExecution().exportData()
+    elif command == 2:
+        print('Listar as habilidades dos perfis que moram em uma determinada cidade')
+
+    elif command == 3:
+        print('Acrescentar uma nova experiência em um perfil')
+
+    elif command == 4:
+        print('Dado o email do perfil, retornar sua experiência')
+
+    elif command == 5:
+        # Listar todas as informações de todos os perfis
+        client.list_all_userinfo()
+
+    elif command == 6:
+        # Dado o email de um perfil, retornar suas informações
+        email = input("Digite um E-mail: ")
+        client.user_by_email(email)
+
+
+if __name__ == '__main__':
+    main()
