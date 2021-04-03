@@ -33,3 +33,18 @@ class ClientApp:
             print(f'Habilidades: {user["habilidades"]}')
             print(f'Experiência Profissional: {user["experiencia_profissional"]}')
         print('-'*50)
+
+    # Lista as informacoes de usuario com um dado email
+    def user_by_email(self, email):
+        user = self.server.findByEmail(email)
+        if isinstance(user, str):
+            print(user)
+            return
+        print(f'Nome: {user["nome"]}')
+        print(f'Sobrenome: {user["sobrenome"]}')
+        print(f'Residência: {user["residencia"]}')
+        print(f'Formação Acadêmica: {user["formacao_academica"]}')
+        print(f'Habilidades: {user["habilidades"]}')
+        print(f'Experiência Profissional: {user["experiencia_profissional"]}')
+        print('-'*50)
+

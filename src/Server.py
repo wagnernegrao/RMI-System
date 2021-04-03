@@ -15,7 +15,6 @@ class Server(object):
     
     def findByGraduation(self, graduation):
         graduates = []
-
         for user in self.userList:
             if (user["formacao_academica"] == graduation):
                 graduates.append(user["nome"])
@@ -24,16 +23,22 @@ class Server(object):
 
     def findByAbilities(self, abilitie):
         abilities = []
-
         for user in self.userList:
             if (user["habilidades"] == abilitie):
                 abilities.append({"Nome": user["nome"], "Habilidade": user["habilidades"]})
     
         return abilities
 
-    # 5. listar todas as informações de todos os perfis
+    # 5. Listar todas as informações de todos os perfis
     def listAllUsers(self):
         return self.userList
+
+    # 6. Dado o email de um perfil, retornar suas informações
+    def findByEmail(self, email):
+        for user in self.userList:
+            if (user["email"] == email):
+                return user
+        return "Esse email não corresponde a nehum usuário"
 
 
 daemon = Pyro4.Daemon() # inicia o processo

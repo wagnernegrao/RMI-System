@@ -57,7 +57,9 @@ def main():
         client.list_all_userinfo()
 
     elif command == 6:
-        print('Dado o email de um perfil, retornar suas informações')
+        # Dado o email de um perfil, retornar suas informações
+        email = input("Digite um E-mail: ")
+        client.user_by_email(email)
 
 
 if __name__ == '__main__':
