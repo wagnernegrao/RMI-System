@@ -39,5 +39,5 @@ Um cliente deve ter:
 - [x] - 2. listar as habilidades dos perfis que moram em uma determinada cidade;
 - [x] - 3. acrescentar uma nova experiência em um perfil;
 - [x] - 4. dado o email do perfil, retornar sua experiência;
-- [ ] - 5. listar todas as informações de todos os perfis;
+- [x] - 5. listar todas as informações de todos os perfis;
 - [ ] - 6. dado o email de um perfil, retornar suas informações.
