@@ -1,0 +1,64 @@
+version: "3.1"
+services: 
+  pyro-ns:
+    build: .
+    container_name: rmi_pyro
+    ports: 
+      - 9090:9090
+    entrypoint: ["pyro4-ns"]
+    command: ["--host=pyro-ns"]
+    networks: 
+      - default
+
+  server:
+    build: .
+    container_name: rmi_server
+    ports:
+      - 9100:9100
+    volumes: 
+      - ./src/Server.py:/Server.py
+    working_dir: /
+    command: ["python", "Server.py"]
+    networks: 
+      - default
+    depends_on: 
+      - pyro-ns
+
+  client_0:
+    build: .
+    container_name: rmi_client_0
+    volumes: 
+      - ./src/Client.py:/Client.py
+    working_dir: /
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks: 
+      - default
+    depends_on: 
+      - pyro-ns
+      - server
+  
+  client_1:
+    build: .
+    container_name: rmi_client_1
+    volumes: 
+      - ./src/Client.py:/Client.py
+    working_dir: /
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks: 
+      - default
+    depends_on: 
+      - pyro-ns
+      - server
+
+  client_2:
+    build: .
+    container_name: rmi_client_2
+    volumes: 
+      - ./src/Client.py:/Client.py
+    working_dir: /
+    entrypoint: ["tail", "-f", "/dev/null"]
+    networks: 
+      - default
+    depends_on: 
+      - pyro-ns
+      - server
