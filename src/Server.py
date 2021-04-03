@@ -1,6 +1,5 @@
 import Pyro4
 
-
 @Pyro4.expose # expoem a classe de forma global
 class Server(object):
 
@@ -45,7 +44,7 @@ class Server(object):
         for user in self.userList:
             if (user["email"] == email):
                 return "Habilidades: " + user["habilidades"]
-
+        
         return "Usuario com esse email nao foi encontrado"
 
 daemon = Pyro4.Daemon() # inicia o processo
