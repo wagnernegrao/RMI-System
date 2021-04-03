@@ -28,19 +28,20 @@ HELP_TEXT = '''
 [6] Dado o email de um perfil, retornar suas informações.
 '''
 
-def get_command_code():
-    while True:
-        try:
-            n = int(input('Comando: '))
-            if not 1 <= n <= 6:
-                raise ValueError()
-            break
-        except ValueError:
-            print('Valor invalido!')
-            pass
-    return n
+# def get_command_code():
+#     while True:
+#         try:
+#             n = int(input('Comando: '))
+#             if not 1 <= n <= 6:
+#                 raise ValueError()
+#             break
+#         except ValueError:
+#             print('Valor invalido!')
+#             pass
+#     return n
 
 def execute_operation(command):
+    print(f'Operação {command}')
     # Listar todas as pessoas formadas em um determinado curso 
     if command == 1:
         curso = input("Digite uma formação acadêmica: ")
@@ -68,17 +69,23 @@ def execute_operation(command):
 
 if __name__ == '__main__':
     server = Pyro4.Proxy("PYRONAME:server")
+    client = RMIClient(server)
 
     # Criando usuarios para testes
-    server.createUser(user)
-    server.createUser(user2)
+    client.create_user(user)
+    client.create_user(user2)
 
-    client = RMIClient(server)
-    print(HELP_TEXT)
+    # print(HELP_TEXT)
 
-    n = 0
-    while n < 5:
-        c = get_command_code() # espera a entrada do usuario
-        execute_operation(c)
-        n += 1
+    # Aqui inicia o loop principal, pra cada código de operação de 1 a 6
+    # são feitas 20 execuções
+    for op in range(1, 7):
+        for _ in range(20):
+            execute_operation(op)
+
+    # Escolha da operação pela linha de comandos, com N repetições
+    #while n < 5:
+    #    c = get_command_code() # espera a entrada do usuario
+    #    execute_operation(c)
+    #    n += 1
     

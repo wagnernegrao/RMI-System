@@ -8,6 +8,13 @@ class RMIClient:
         self.server = server_proxy
         self.times = TimeExecution()
 
+    def create_user(self, user):
+        t0 = time.time()
+        users = self.server.createUser(user) 
+        t1 = time.time()
+        self.times.timeCreateUser(t0, t1)
+        print(f'{t1-t0} segundos')
+
     # 1. Listar todas as pessoas formadas em um determinado curso
     def list_users_by_course(self, curso):
         t0 = time.time()
