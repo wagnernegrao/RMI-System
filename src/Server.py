@@ -12,6 +12,15 @@ class Server(object):
 
     def listOfUser(self):
         return self.userList
+    
+    def findByGraduation(self, graduation):
+        graduates = []
+
+        for user in self.userList:
+            if (user["formacao_academica"] == graduation):
+                graduates.append(user)
+    
+        return graduates
 
 
 
