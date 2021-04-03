@@ -8,7 +8,7 @@ class Server(object):
 
     def createUser(self, user):
         self.userList.append(user)
-        return "User created"
+        return "Usuario criado"
 
     def listOfUser(self):
         return self.userList
@@ -30,8 +30,16 @@ class Server(object):
                 abilities.append({"Nome": user["nome"], "Habilidade": user["habilidades"]})
     
         return abilities
+    
+    def modifyAbilitie(self, email, newAbilitie):
 
+        for user in self.userList:
+            if (user["email"] == email):
+                user["experiencia_profissional"] = user["experiencia_profissional"] + ", " + newAbilitie
 
+                return "Nova experiencia profissional adicionada: " + user["experiencia_profissional"]
+
+        return "Usuario com esse email nao foi encontrado"
 
 
 
