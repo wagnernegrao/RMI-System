@@ -5,29 +5,25 @@ class Server(object):
 
     userList = []
 
+    # 1
     def createUser(self, user):
         self.userList.append(user)
         return "Usuario criado"
-
-    def listOfUser(self):
-        return self.userList
-    
+    # 2 listar todas as pessoas formadas em um determinado curso
     def findByGraduation(self, graduation):
         graduates = []
         for user in self.userList:
             if (user["formacao_academica"] == graduation):
                 graduates.append(user["nome"])
-    
         return graduates
-
+    # 3  listar as habilidades dos perfis que moram em uma determinada cidade
     def findByAbilities(self, abilitie):
         abilities = []
         for user in self.userList:
             if (user["habilidades"] == abilitie):
                 abilities.append({"Nome": user["nome"], "Habilidade": user["habilidades"]})
-    
         return abilities
-    
+    # 4 acrescentar uma nova experiência em um perfil
     def modifyAbilitie(self, email, newAbilitie):
 
         for user in self.userList:
@@ -36,25 +32,22 @@ class Server(object):
                 return "Nova experiencia profissional adicionada: " + user["experiencia_profissional"]
             
             return "Usuario com esse email nao foi encontrado"
-
-    # 5. Listar todas as informações de todos os perfis
+    # 5 dado o email do perfil, retornar sua experiência
+    def findByExperience(self, email):
+        for user in self.userList:
+            if (user["email"] == email):
+                return "Habilidades: " + user["habilidades"]
+        return "Usuario com esse email nao foi encontrado"
+    # 6 listar todas as informações de todos os perfis
     def listAllUsers(self):
         return self.userList
-
-    # 6. Dado o email de um perfil, retornar suas informações
+    # 7. Dado o email de um perfil, retornar suas informações
     def findByEmail(self, email):
         for user in self.userList:
             if (user["email"] == email):
                 return user
         return "Esse email não corresponde a nehum usuário"
-             
 
-    def findByExperience(self, email):
-        for user in self.userList:
-            if (user["email"] == email):
-                return "Habilidades: " + user["habilidades"]
-        
-        return "Usuario com esse email nao foi encontrado"
 
 daemon = Pyro4.Daemon() # inicia o processo
 ns = Pyro4.locateNS() # Inicia o processo local
