@@ -1,6 +1,6 @@
-
 import Pyro4
-
+import time
+import timeExecution as te
 
 server = Pyro4.Proxy("PYRONAME:server") # Conecta com o servidor
 
@@ -36,7 +36,7 @@ user = {"nome": "wagner",
 
 user2 = {"nome": "wagner",
         "sobrenome": "negrao",
-        "email": "wagner@email.com",
+        "email": "email@email.com",
         "residencia": "rua jarbas passarinho",
         "formacao_academica": "pedreiro",
         "habilidades": "javaboy",
@@ -50,5 +50,18 @@ print(server.createUser(user2))
 # graduacao = input("Qual graduacao: ")
 # print(server.findByGraduation(graduacao))
 
-habilidade = input("Qual habilidade: ")
-print(server.findByAbilities(habilidade))
+# habilidade = input("Qual habilidade: ")
+# print(server.findByAbilities(habilidade))
+
+# email = input("Qual email: ")
+# habilidade = input("Qual habilidade: ")
+# print(server.modifyAbilitie(email , habilidade))
+
+email = input("Qual email: ")
+t1 = time.time()
+print(server.findByExperience(email))
+t2 = time.time()
+
+te.TimeExecution().timeCreateUser(t1, t2)
+
+te.TimeExecution().exportData()
