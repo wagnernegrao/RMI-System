@@ -40,4 +40,4 @@ Um cliente deve ter:
 - [x] - 3. acrescentar uma nova experiência em um perfil;
 - [x] - 4. dado o email do perfil, retornar sua experiência;
 - [x] - 5. listar todas as informações de todos os perfis;
-- [ ] - 6. dado o email de um perfil, retornar suas informações.
+- [x] - 6. dado o email de um perfil, retornar suas informações.
