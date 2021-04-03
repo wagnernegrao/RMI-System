@@ -36,7 +36,7 @@ Um cliente deve ter:
 ### Como sugestão tem-se as seguintes operações que podem ser realizadas por um usuário no servidor:
 
 - [x] - 1. listar todas as pessoas formadas em um determinado curso;
-- [ ] - 2. listar as habilidades dos perfis que moram em uma determinada cidade;
+- [x] - 2. listar as habilidades dos perfis que moram em uma determinada cidade;
 - [ ] - 3. acrescentar uma nova experiência em um perfil;
 - [ ] - 4. dado o email do perfil, retornar sua experiência;
 - [ ] - 5. listar todas as informações de todos os perfis;
