@@ -41,4 +41,5 @@ ns = Pyro4.locateNS() # Inicia o processo local
 uri = daemon.register(Server) # Registra o processo
 ns.register("server", uri) # Cria um alias para o processo registrado
 
+print('Ready. URI =', uri)
 daemon.requestLoop() # Deixa o processo aberto para chamadas
