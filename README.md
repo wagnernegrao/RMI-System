@@ -20,3 +20,24 @@ Abrir 3 abas no terminal
   rodar o servidor e outra o cliente.
 
 
+
+## Requisitos
+
+Um cliente deve ter:
+
+* email (chave)
+* nome
+* sobrenome
+* residência 
+* formação acadêmica
+* habilidades e experiência profissional. 
+
+
+### Como sugestão tem-se as seguintes operações que podem ser realizadas por um usuário no servidor:
+
+- [ ] - 1. listar todas as pessoas formadas em um determinado curso;
+- [ ] - 2. listar as habilidades dos perfis que moram em uma determinada cidade;
+- [ ] - 3. acrescentar uma nova experiência em um perfil;
+- [ ] - 4. dado o email do perfil, retornar sua experiência;
+- [ ] - 5. listar todas as informações de todos os perfis;
+- [ ] - 6. dado o email de um perfil, retornar suas informações.
