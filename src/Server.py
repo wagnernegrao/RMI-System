@@ -41,7 +41,12 @@ class Server(object):
 
         return "Usuario com esse email nao foi encontrado"
 
+    def findByExperience(self, email):
+        for user in self.userList:
+            if (user["email"] == email):
+                return "Habilidades: " + user["habilidades"]
 
+        return "Usuario com esse email nao foi encontrado"
 
 daemon = Pyro4.Daemon() # inicia o processo
 ns = Pyro4.locateNS() # Inicia o processo local
