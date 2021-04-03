@@ -49,10 +49,14 @@ class Server(object):
         return "Esse email não corresponde a nehum usuário"
 
 
-daemon = Pyro4.Daemon() # inicia o processo
+
+
+# daemon = Pyro4.Daemon(host="server", port=9100) # inicia o processo usando docker
+# ns = Pyro4.locateNS(host="pyro-ns", port=9090) # Inicia o processo local usando docker
+daemon = Pyro4.Daemon() # inicia o processo local
 ns = Pyro4.locateNS() # Inicia o processo local
 uri = daemon.register(Server) # Registra o processo
 ns.register("server", uri) # Cria um alias para o processo registrado
 
-print('Ready. URI =', uri)
+print("Abrindo processo para chamadas")
 daemon.requestLoop() # Deixa o processo aberto para chamadas
