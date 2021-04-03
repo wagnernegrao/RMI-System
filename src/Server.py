@@ -31,8 +31,9 @@ class Server(object):
     
         return abilities
 
-
-
+    # 5. listar todas as informações de todos os perfis
+    def listAllUsers(self):
+        return self.userList
 
 
 daemon = Pyro4.Daemon() # inicia o processo
@@ -40,5 +41,4 @@ ns = Pyro4.locateNS() # Inicia o processo local
 uri = daemon.register(Server) # Registra o processo
 ns.register("server", uri) # Cria um alias para o processo registrado
 
-# print("Ready. Object uri =", uri)
 daemon.requestLoop() # Deixa o processo aberto para chamadas
