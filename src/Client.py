@@ -30,7 +30,7 @@ user = {"nome": "wagner",
         "email": "wagner@email.com",
         "residencia": "rua jarbas passarinho",
         "formacao_academica": "cientista computacao",
-        "habilidades": "Javaboy",
+        "habilidades": "dev",
         "experiencia_profissional": "dev"
         }
 
@@ -39,7 +39,7 @@ user2 = {"nome": "wagner",
         "email": "wagner@email.com",
         "residencia": "rua jarbas passarinho",
         "formacao_academica": "pedreiro",
-        "habilidades": "Javaboy",
+        "habilidades": "javaboy",
         "experiencia_profissional": "dev"
 }
 
@@ -47,5 +47,8 @@ print(server.createUser(user))
 print(server.createUser(user))
 print(server.createUser(user2))
 
-graduacao = input("Qual graduacao: ")
-print(server.findByGraduation(graduacao))
+# graduacao = input("Qual graduacao: ")
+# print(server.findByGraduation(graduacao))
+
+habilidade = input("Qual habilidade: ")
+print(server.findByAbilities(habilidade))

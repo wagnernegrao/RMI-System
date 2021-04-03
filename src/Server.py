@@ -22,6 +22,14 @@ class Server(object):
     
         return graduates
 
+    def findByAbilities(self, abilitie):
+        abilities = []
+
+        for user in self.userList:
+            if (user["habilidades"] == abilitie):
+                abilities.append({"Nome": user["nome"], "Habilidade": user["habilidades"]})
+    
+        return abilities
 
 
 
