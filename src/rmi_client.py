@@ -97,4 +97,3 @@ class RMIClient:
         print(f'Experiência Profissional: {user["experiencia_profissional"]}')
         print('-'*50)
         print(f'{t1-t0} segundos')
-

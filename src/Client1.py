@@ -1,26 +1,8 @@
 import sys
 import Pyro4
-import time_execution as te
 from rmi_client import RMIClient
+import time_execution as te
 
-
-user = {"nome": "wagner",
-        "sobrenome": "negrao",
-        "email": "wagner@email.com",
-        "residencia": "Belem",
-        "formacao_academica": "cientista computacao",
-        "habilidades": "dev",
-        "experiencia_profissional": "dev"
-}
-
-user2 = {"nome": "samille",
-        "sobrenome": "leao",
-        "email": "samille@email.com",
-        "residencia": "Belem",
-        "formacao_academica": "Design",
-        "habilidades": "Design",
-        "experiencia_profissional": "Trabalha com design"
-}
 
 HELP_TEXT = '''
 [1] Listar todas as pessoas formadas em um determinado curso;
@@ -76,28 +58,6 @@ if __name__ == '__main__':
     server = Pyro4.Proxy("PYRONAME:server")
     client = RMIClient(server)
 
-    # Criando usuarios para testes
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user)
-    client.create_user(user2)
-
     # print(HELP_TEXT)
 
     tempo = te.TimeExecution()
@@ -110,7 +70,6 @@ if __name__ == '__main__':
             execute_operation(op)
 
     tempo.exportData(sys.argv[1])
-    # tempo.exportData("arquivo")
     # Escolha da operação pela linha de comandos, com N repetições
     #while n < 5:
     #    c = get_command_code() # espera a entrada do usuario
