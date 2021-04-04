@@ -13,9 +13,9 @@ user = {"nome": "wagner",
         "experiencia_profissional": "dev"
 }
 
-user2 = {"nome": "samille",
-        "sobrenome": "leao",
-        "email": "samille@email.com",
+user2 = {"nome": "renato",
+        "sobrenome": "nato",
+        "email": "renato@email.com",
         "residencia": "Belem",
         "formacao_academica": "Design",
         "habilidades": "Design",
@@ -58,18 +58,18 @@ def execute_operation(command):
     elif command == 3:
         # email = input("Digite um E-mail: ")
         # experiencia = input("Digite a nova experiencia: ")
-        client.add_experience("samille@email.com", "Trabalha com design")
+        client.add_experience("renato@email.com", "Trabalha com design")
     # Dado o email do perfil, retornar sua experiência
     elif command == 4:
         # email = input("Digite um E-mail: ")
-        client.experience_by_email("samille@email.com")
+        client.experience_by_email("renato@email.com")
     # Listar todas as informações de todos os perfis
     elif command == 5:
         client.list_all_userinfo()
     # Dado o email de um perfil, retornar suas informações
     elif command == 6:
         # email = input("Digite um E-mail: ")
-        client.user_by_email("samille@email.com")
+        client.user_by_email("renato@email.com")
         print("Passou aqui 6")
 
 if __name__ == '__main__':
