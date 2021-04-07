@@ -33,7 +33,7 @@ services:
       - ./src/data/client0.csv:/src/data/client0.csv
       - ./src/time_execution.py:/time_execution.py
       - ./src/rmi_client.py:/rmi_client.py
-      - ./src/Client.py:/Client.py
+      - ./src/Client.py:/Client0.py
     working_dir: /
     entrypoint: ["tail", "-f", "/dev/null"]
     networks: 
